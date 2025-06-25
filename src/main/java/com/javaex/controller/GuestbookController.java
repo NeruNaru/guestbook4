@@ -116,8 +116,9 @@ public class GuestbookController {
 	public String remove(@ModelAttribute GuestbookVO guestbooVO) {
 		System.out.println("GuestbookController.remove()");
 		
-		GuestbookDAO guestbookDAO = new GuestbookDAO();
-		int count = guestbookDAO.guestbookDelete(guestbooVO);
+		GuestbookService guestbookService = new GuestbookService();
+		guestbookService.exeGuestbookRemove(guestbooVO);
+		
 
 		return "redirect:/list";
 	}

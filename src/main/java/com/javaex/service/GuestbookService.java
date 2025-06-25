@@ -37,5 +37,30 @@ public class GuestbookService {
 		return count;
 	}
 	
+	//-방명록 삭제하기
+	public int exeGuestbookRemove(GuestbookVO guestbookVO) {
+		System.out.println("GuestbookService.exeGuestbookRemove()");
+		
+		//dao를 통해서 일한다
+		GuestbookDAO guestbookDAO = new GuestbookDAO();
+		int count = guestbookDAO.guestbookDelete(guestbookVO);
+		
+		return count;
+	}
+	
+	
+	
+	
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
