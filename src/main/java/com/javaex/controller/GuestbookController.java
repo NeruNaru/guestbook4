@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.dao.GuestbookDAO;
+import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVO;
 
 @Controller
@@ -27,9 +27,9 @@ public class GuestbookController {
 	public String list(Model model) {
 		System.out.println("GuestbookController.list()");
 		
-		GuestbookDAO guestbookDAO = new GuestbookDAO();
-		List<GuestbookVO> guestbookList = guestbookDAO.guestbookSelect();
-		System.out.println(guestbookList);
+		//service
+		GuestbookService guestbookService = new GuestbookService();
+		List<GuestbookVO> guestbookList = guestbookService.exeGetGuestbookList();
 		
 		//*Model개념
 		//D.S 야!!!!! 
@@ -51,6 +51,7 @@ public class GuestbookController {
 		           //D.S야!!!! request의 파라미터값을 꺼내서
 		           //GuestbookVO로 묶어줘
 		System.out.println("GuestbookController.add()");	
+		
 		/*D.S가 하는일
 		1)파라미터의 값을 꺼낸다
 	    name=aaa                setName()
@@ -71,10 +72,11 @@ public class GuestbookController {
 		
 		*url 파라미터이름 과 VO의 필드 이름을 같게 만든다
 		*/
-		System.out.println(guestbookVO);
-		GuestbookDAO guestbookDAO = new GuestbookDAO();
-		int count = guestbookDAO.guestbookInsert(guestbookVO);
-		System.out.println(count);
+		////////////////////////////////////////////////////
+		
+		GuestbookService guestbookService = new GuestbookService();
+		guestbookService.exeGuestbookAdd(guestbookVO);
+		
 		
 		//리다이렉트 하는법 "redirect:" 앞쪽에 써준다
 		//http://localhost:8888/guestbook4/list
