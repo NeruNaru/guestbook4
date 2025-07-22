@@ -2,13 +2,13 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.javaex.dao.GuestbookDAO;
 import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVO;
 
@@ -16,6 +16,8 @@ import com.javaex.vo.GuestbookVO;
 public class GuestbookController {
 
 	//필드
+	@Autowired
+	private GuestbookService guestbookservice;
 	
 	//생성자
 	
@@ -28,8 +30,11 @@ public class GuestbookController {
 		System.out.println("GuestbookController.list()");
 		
 		//service
-		GuestbookService guestbookService = new GuestbookService();
-		List<GuestbookVO> guestbookList = guestbookService.exeGetGuestbookList();
+		//GuestbookService guestbookService = new GuestbookService();
+		// guestbookService 메모리에 올려주세요	==> 주소를 주입 해주세요
+		//		ㄴGuestbookService guestbookservice = new Guestbookservice();
+		
+		List<GuestbookVO> guestbookList = guestbookservice.exeGetGuestbookList();
 		
 		//*Model개념
 		//D.S 야!!!!! 
@@ -73,9 +78,8 @@ public class GuestbookController {
 		*url 파라미터이름 과 VO의 필드 이름을 같게 만든다
 		*/
 		////////////////////////////////////////////////////
-		
-		GuestbookService guestbookService = new GuestbookService();
-		guestbookService.exeGuestbookAdd(guestbookVO);
+	
+		guestbookservice.exeGuestbookAdd(guestbookVO);
 		
 		
 		//리다이렉트 하는법 "redirect:" 앞쪽에 써준다
@@ -116,8 +120,7 @@ public class GuestbookController {
 	public String remove(@ModelAttribute GuestbookVO guestbooVO) {
 		System.out.println("GuestbookController.remove()");
 		
-		GuestbookService guestbookService = new GuestbookService();
-		guestbookService.exeGuestbookRemove(guestbooVO);
+		guestbookservice.exeGuestbookRemove(guestbooVO);
 		
 
 		return "redirect:/list";
