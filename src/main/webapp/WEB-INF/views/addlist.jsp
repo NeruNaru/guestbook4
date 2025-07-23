@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Insert title here(version.02)</title>
 	</head>
 	<body>
 		<form action="${pageContext.request.contextPath}/add" method="get">
